@@ -319,7 +319,7 @@ function runkit7_zval_inspect($value) {
 
 /**
  * Gets a unique integer identifier (Will be reused when the object is garbage collected) for an object.
- * This is identical to `spl_object_id`, which will be built into PHP 7.2+.
+ * This is identical to `spl_object_id`, which is built into PHP 7.2+.
  * Similar to `spl_object_hash`, but returns an int instead of a string.
  *
  * Aliases: runkit_object_id

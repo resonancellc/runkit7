@@ -69,6 +69,11 @@ PHP_FUNCTION(runkit7_zval_inspect)
 }
 /* }}} */
 
+#ifndef ZEND_ARG_INFO_WITH_DEFAULT_VALUE
+#define ZEND_ARG_INFO_WITH_DEFAULT_VALUE(pass_by_ref, name, default_value) \
+	ZEND_ARG_INFO(pass_by_ref, name)
+#endif
+
 /* {{{ arginfo */
 ZEND_BEGIN_ARG_INFO_EX(arginfo_runkit_zval_inspect, 0, 0, 1)
 	ZEND_ARG_INFO(0, value)
@@ -97,7 +102,7 @@ ZEND_END_ARG_INFO()
 #ifdef PHP_RUNKIT_MANIPULATION_IMPORT
 ZEND_BEGIN_ARG_INFO_EX(arginfo_runkit_import, 0, 0, 1)
 ZEND_ARG_INFO(0, filename)
-ZEND_ARG_INFO(0, flags)
+ZEND_ARG_INFO_WITH_DEFAULT_VALUE(0, flags, "RUNKIT7_IMPORT_CLASS_METHODS")
 ZEND_END_ARG_INFO()
 #endif
 
@@ -179,7 +184,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_runkit_constant_redefine, 0, 0, 2)
 	ZEND_ARG_INFO(0, constname)
 	ZEND_ARG_INFO(0, value)
-	ZEND_ARG_INFO(0, newVisibility)
+	ZEND_ARG_INFO_WITH_DEFAULT_VALUE(0, newVisibility, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_runkit_constant_remove, 0, 0, 1)
@@ -189,7 +194,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_runkit_constant_add, 0, 0, 2)
 	ZEND_ARG_INFO(0, constname)
 	ZEND_ARG_INFO(0, value)
-	ZEND_ARG_INFO(0, newVisibility)
+	ZEND_ARG_INFO_WITH_DEFAULT_VALUE(0, newVisibility, "RUNKIT7_ACC_PUBLIC")
 ZEND_END_ARG_INFO()
 
 	// PHP_FE(runkit7_default_property_add,								NULL)
